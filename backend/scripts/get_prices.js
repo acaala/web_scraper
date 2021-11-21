@@ -65,7 +65,7 @@ const getPrices = async (product_id) => {
     pinned: getOffer(pinnedElement),
     offers,
   };
-
-  console.log(result);
+  return result;
 };
-getPrices("B07GYRVP61");
+
+module.exports = { getPrices };

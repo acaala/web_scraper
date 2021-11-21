@@ -1,9 +1,19 @@
+const { getPrices } = require("./scripts/get_prices.js");
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = 3333;
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+app.use(express.json());
+
+app.get("/find/:id", async (req, res) => {
+  const prices = await getPrices(req.params.id);
+  res.send(prices);
 });
 
 app.listen(port, () => {
